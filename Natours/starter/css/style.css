@@ -6,3 +6,185 @@ Medium green: #55c57a
 Dark green: #28b485
 
 */
+
+/* Pare resetar as configurações padrão de qq brower podemos utilizar */
+* {
+	margin:0;
+	padding: 0;
+	box-sizing: border-box; 
+}
+
+/* aplicamos alguns atributos ao elemento body pois assim todos os filhos herdam esses atributoss */
+body {
+	font-family: "Lato", sans-serif;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 1.7; /* 1.7 vezes o tamanho padrão */
+	color: #777;
+	padding: 30px;
+}
+
+.header {
+	height: 95vh; /* 95% do viewport */
+	background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 131, 0.8)), url(../img/hero.jpg) ;
+	background-size: cover;
+	background-position: top;
+	clip-path: polygon(0 0,100% 0, 100% 75vh, 0 100%);
+	position: relative;
+}
+
+.logo-box{ /* para funcionar o top e left a partir do header precisa ter position relative no parent*/
+	position: absolute; /*Para funcionar top e left precisa ter position absolute */
+	top: 40px;
+	left: 40px;
+	background-color: 'red';
+}
+
+.logo {
+	height: 35px;
+}
+
+.text-box{
+	position: absolute;
+	top: 40%; /* Desce 40% */
+	left: 50%; /* da esquerda 50% em relação ao pai*/
+	transform: translate(-50%, -50%); /*volta -50 e -50% em relação ao próprio elemento */
+	text-align: center; /*alinha os elementos textuais filhos */
+
+}
+
+.head-primary{
+	color: #fff;
+	text-transform: uppercase;
+	backface-visibility: hidden; /* estudar */
+	margin-bottom: 60px;
+}
+
+.head-primary-main{
+	display: block; /* o elemento procura ocupar o espaço todo na linha */
+	font-size: 60px;
+	font-weight: 400;
+	letter-spacing: 35px;
+	animation: moveInLeft;
+	animation-duration: 1s;
+	animation-timing-function: ease-out; /*os 3 parâmetros podem ser separados ou juntos como abaixo*/
+}
+
+.head-primary-sub{
+	display: block; /* o elemento procura ocupar o espaço todo na linha */
+	font-size: 20px;
+	font-weight: 700;
+	letter-spacing: 17.4px;
+	animation: moveInRight 1s ease-out;
+}
+
+@keyframes moveInLeft {
+	0% {
+		opacity: 0;
+		transform: translateX(-100px);
+	}
+
+	80% {
+		transform: translateX(20px);
+	}
+
+	100%{
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes moveInRight {
+	0% {
+		opacity: 0;
+		transform: translateX(100px);
+	}
+
+	80% {
+		transform: translateX(-20px);
+	}
+
+	100%{
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes moveInBtn {
+	0% {
+		opacity: 0;
+		transform: translateY(80px);
+	}
+
+	100%{
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.btn:link,
+.btn:visited{
+	text-transform: uppercase;
+	text-decoration: none;
+	padding: 15px 40px;
+	display: inline-block;
+	border-radius: 100px;
+	transition: 0.2s all; /* dá um certo leveza na animação */
+	position: relative;  /*Esse elemento foi colocado aqui conta do btn after */
+}
+
+.btn:hover{
+	transform: translateY(-3px);
+	box-shadow: 0 5px 10px rgba(0,0,0,0.2); /* primeiro parâmetro 0 para shadow x, 10 para shadow y, 20px paa blur, rgb 0 0 0 para black com 20 de opacidade. */
+}
+
+.btn:active{
+	transform: translateY(-1px); /* quando o botão é clicado */
+}
+
+.btn-whyte{
+	background-color: #fff;
+	color: #777;
+}
+
+.btn-animated{
+	animation: moveInBtn;
+	animation-duration: 0.5s;
+	animation-timing-function: ease-out; 
+	animation-delay: 0.75s;
+	animation-fill-mode: backwards; /* inicia com o primeiro frame da animação portanto o botão não aparece */
+}
+
+/* O bloco ######### não está funcionando */
+
+/* animação do botão vir pra frente e voltar (pseudo elementos) */
+/* after funciona como se fosse um filho do elemento principal */
+.btn::after {
+	content: "";
+	display: inline-block;
+	height: 100%; /*do tamanho original do botão */
+	width: 100%;
+	border-radius: 100px;
+	position: absolute;
+	top: 0;
+	left: 0; 
+	z-index: -1;
+	transition: all .4s;
+
+}
+
+.btn-whyte::after {
+	background-color: 'red';
+}
+
+.btn:hover::after {
+	/*transform: scale(1.5);*/
+	transform: scaleX(1.4) scaleY(1.6);
+	opacity: 0;
+}
+
+/* ####################################### */
+
+/* url(../img/hero.jpg); */
+
+
